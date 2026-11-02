@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Marsa Matruh | Egypt's Mediterranean Gem</title>
+    <style>
+        :root {
+            --deep-navy: #0A192F;
+            --med-blue: #1E3A8A;
+            --turquoise: #06B6D4;
+            --salt-white: #F8FAFC;
+            --pure-white: #FFFFFF;
+            --sand-gold: #D97706;
+            --card-bg: #112240;
+            --text-light: #CBD5E1;
+            --border-color: #233554;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--deep-navy);
+            color: var(--salt-white);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(10, 25, 47, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--salt-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--turquoise);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            margin-top: 60px;
+            overflow: hidden;
+        }
+
+        .hero-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--salt-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            color: var(--salt-white);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--turquoise);
+            margin: 0.5rem auto 2rem;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: -1rem auto 3rem;
+        }
+
+        /* Landmarks Grid */
+        .landmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: var(--turquoise);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-features {
+            list-style-type: none;
+        }
+
+        .card-features li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .card-features li::before {
+            content: '•';
+            color: var(--turquoise);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Timeline Section */
+        .timeline-overview-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--turquoise);
+            border: 4px solid var(--deep-navy);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-content img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-date {
+            color: var(--turquoise);
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            margin: 0.25rem 0 0.5rem;
+            color: var(--salt-white);
+        }
+
+        .fact-box {
+            margin-top: 0.75rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 3px solid var(--turquoise);
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* Culture Section */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .culture-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .culture-card h3 {
+            color: var(--turquoise);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .culture-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #060e1a;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Marsa <span>Matruh</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">Overview</a></li>
+                <li><a href="#landmarks">Landmarks</a></li>
+                <li><a href="#timeline">History</a></li>
+                <li><a href="#culture">Culture</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="about">
+        <img src="marsa_matruh_city_overview.png" alt="Marsa Matruh Aerial Overview" class="hero-img">
+        <div class="hero-content">
+            <h1>Marsa Matruh</h1>
+            <p>Where golden desert sands meet the crystal-clear turquoise of the Mediterranean Sea.[cite: 2]</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container">
+
+        <!-- Top 3 Landmarks Section -->
+        <section id="landmarks" style="margin-bottom: 5rem;">
+            <h2 class="section-title">Top Landmarks</h2>
+            <p class="section-subtitle">Discover the striking natural wonders and historic rock formations along the coastline.[cite: 2]</p>
+            
+            <div class="landmarks-grid">
+                <!-- Landmark 1 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="ageeba_beach.png" alt="Ageeba Beach" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">1. Ageeba Beach</h3>
+                        <p class="card-text">Renowned for its striking cliffside setting and crystal-clear turquoise waters[cite: 2]. Located about 24 kilometers west of the city center, its name translates to "Miracle Beach."[cite: 2]</p>
+                        <ul class="card-features">
+                            <li>Dramatic cove enclosed by carved limestone cliffs and natural rock formations.[cite: 2]</li>
+                            <li>Scenic clifftop viewpoint overlooking the Mediterranean Sea.[cite: 2]</li>
+                            <li>Reached via a wooden staircase descending down to the shore.[cite: 2]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Landmark 2 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="cleopatra_bath.png" alt="Cleopatra Bath" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">2. Cleopatra Bath</h3>
+                        <p class="card-text">A historic landmark steeped in myth and folklore, located on a rocky outcrop extending into the Mediterranean Sea.[cite: 2]</p>
+                        <ul class="card-features">
+                            <li>Associated with accounts of Queen Cleopatra and Mark Antony.[cite: 2]</li>
+                            <li>Stone pool where seawater rushes through natural rock channels.[cite: 2]</li>
+                            <li>Provides striking panoramic views of the coast.[cite: 2]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Landmark 3 -->
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="Gemini_Generated_Image_q4kwpcq4kwpcq4kw.jfif" alt="Rommel's Cave Museum" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">3. Rommel's Cave Museum</h3>
+                        <p class="card-text">A unique historical landmark carved directly into the rock overlooking the bay, serving as a significant World War II site.[cite: 2]</p>
+                        <ul class="card-features">
+                            <li>Used by German Field Marshal Erwin Rommel as a command headquarters.[cite: 2]</li>
+                            <li>Houses military memorabilia, maps, and historical artifacts.[cite: 2]</li>
+                            <li>Combines military history with dramatic coastal cave architecture.[cite: 2]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historical Timeline Section -->
+        <section id="timeline" style="margin-bottom: 5rem;">
+            <h2 class="section-title">Timeline of Matrouh</h2>
+            <p class="section-subtitle">From an ancient Mediterranean gateway to a world-renowned summer destination.[cite: 1]</p>
+
+            <!-- Complete Timeline Graphic -->
+            <img src="Gemini_Generated_Image_lso0i3lso0i3lso0.jfif" alt="Timeline of Matrouh History Visual" class="timeline-overview-img">
+
+            <div class="timeline">
+                
+                <!-- Era 1 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <img src="Gemini_Generated_Image_vc2nm7vc2nm7vc2n.jfif" alt="Ancient Egyptian Era">
+                        <span class="timeline-date">c. 3000–332 BCE</span>
+                        <h3 class="timeline-title">1. Ancient Egypt - The Western Gateway</h3>
+                        <p>Matrouh's coast connected Egypt with Libya and the Mediterranean world[cite: 1]. Used for travel, trade, and military movement[cite: 1].</p>
+                        <div class="fact-box">
+                            <strong>Eye-catching fact:</strong> Natural bays made it valuable as a sheltered stop along the sea[cite: 1].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 2 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <img src="Gemini_Generated_Image_am8sd3am8sd3am8s.jfif" alt="Greek and Roman Era">
+                        <span class="timeline-date">332 BCE–395 CE</span>
+                        <h3 class="timeline-title">2. Greek & Roman Era - Paraetonium</h3>
+                        <p>Called Paraetonium by the Greeks, it became an important port and strategic Roman coastal settlement[cite: 1].</p>
+                        <div class="fact-box">
+                            <strong>Interesting fact:</strong> Famous enough to appear in historical accounts of Mediterranean campaigns[cite: 1].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 3 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <img src="Gemini_Generated_Image_xrdc80xrdc80xrdc.jfif" alt="Early Islamic Period">
+                        <span class="timeline-date">7th–15th Centuries</span>
+                        <h3 class="timeline-title">3. Early Islamic Period</h3>
+                        <p>Remained a vital coastal stopping point connecting local communities to wider trade networks[cite: 1].</p>
+                        <div class="fact-box">
+                            <strong>Fun fact:</strong> A natural meeting point between desert trade routes and the sea[cite: 1].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 4 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <img src="Gemini_Generated_Image_q4kwpcq4kwpcq4kw.jfif" alt="World War II Desert War">
+                        <span class="timeline-date">1940–1943</span>
+                        <h3 class="timeline-title">4. World War II - The Desert War</h3>
+                        <p>Served as a key strategic military base during the North African Campaign for British and Commonwealth forces[cite: 1].</p>
+                        <div class="fact-box">
+                            <strong>Eye-catching fact:</strong> The turning point Battle of El Alamein took place nearby[cite: 1].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 5 -->
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <img src="Gemini_Generated_Image_uv5o51uv5o51uv5o.jfif" alt="Modern Matrouh Tourism">
+                        <span class="timeline-date">1950s–Today</span>
+                        <h3 class="timeline-title">5. Modern Matrouh</h3>
+                        <p>Developed into one of Egypt's best-known summer destinations with white sand and clear turquoise water[cite: 1].</p>
+                        <div class="fact-box">
+                            <strong>Did you know?</strong> Famous for beaches like Agiba with cliffs surrounding a small blue bay[cite: 1].
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Era 6 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">21st Century</span>
+                        <h3 class="timeline-title">6. Today: History to Holiday</h3>
+                        <p>Combines ancient history, Bedouin culture, WWII heritage, desert landscapes, and coastal tourism[cite: 1, 2].</p>
+                        <div class="fact-box">
+                            <strong>Fun fact:</strong> The contrast between golden desert, white sand, and turquoise water is iconic[cite: 2].
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Intangible Cultural Heritage Section -->
+        <section id="culture">
+            <h2 class="section-title">Cultural Heritage</h2>
+            <p class="section-subtitle">Deeply rooted in nomadic and coastal traditions of the local Bedouin tribes (Awlad Ali)[cite: 3].</p>
+
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <h3>Bedouin Folklore & Oral Tradition</h3>
+                    <p>Poetry, songs, and storytelling preserve history and genealogy, accompanied by instruments like the simsimiyya or rababa[cite: 3].</p>
+                </div>
+
+                <div class="culture-card">
+                    <h3>Traditional Crafts & Weaving</h3>
+                    <p>Tent-making and geometric wool weaving pass down generations to create distinct rugs, cushions, and items with desert motifs[cite: 3].</p>
+                </div>
+
+                <div class="culture-card">
+                    <h3>Customary Law (Orf)</h3>
+                    <p>Customary tribal law and elder councils resolve disputes, manage water wells, grazing lands, and govern celebrations[cite: 3].</p>
+                </div>
+
+                <div class="culture-card">
+                    <h3>Gastronomy & Hospitality</h3>
+                    <p>Dishes like Merdouma (pit-cooked meat) and Bedouin green tea over charcoal highlight hospitality rituals[cite: 3].</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Marsa Matruh Portal. Deep Mediterranean Navy & Salt White Theme.</p>
+    </footer>
+
+</body>
+</html>
